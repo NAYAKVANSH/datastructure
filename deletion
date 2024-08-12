@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100
+
+void deleteElement(int arr[], int *size, int index) {
+    if (index < 0 || index >= *size) {
+        printf("Error: Index out of bounds.\n");
+        return;
+    }
+
+    for (int i = index; i < (*size) - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+    
+    // Decrease the size of the array
+    (*size)--;
+}
+
+void printArray(int arr[], int size) {
+    printf("Array elements: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int array[MAX_SIZE];
+    int size, index;
+
+    printf("Enter number of element in array: ");
+    scanf("%d", &size);
+
+
+    if (size <= 0 || size > MAX_SIZE) {
+        printf("Error: Size must be between 1 and %d.\n", MAX_SIZE);
+        return 1;
+    }
+
+    printf("Enter %d elements:\n", size);
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &array[i]);
+    }
+
+    printArray(array, size);
+
+    printf("delete element index number: ");
+    scanf("%d", &index);
+
+    deleteElement(array, &size, index);
+
+    printArray(array, size);
+
+    return 0;
+}
